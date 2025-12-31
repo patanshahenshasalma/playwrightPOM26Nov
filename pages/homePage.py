@@ -1,7 +1,8 @@
 from playwright.sync_api import Page, expect
 from utils.commonMethods import CommonMethods
 
-class HomePage:
+
+class HomePage():
     def __init__(self, page: Page):
         self.page = page
         self.accntBtn = page.locator("#nav-link-accountList")

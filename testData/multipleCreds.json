@@ -1,14 +1,4 @@
 {
-    "validCredential1": {
-       "username": "trainingplaywright@gmail.com",
-        "password": "Welcome@02"
-    },
-    "inValidCredential2": {
-        "username": "validuser2@example.com",
-        "password": "validpassword2"
-    },
-    "inValidCredential1": {
-        "username": "invaliduser1@example.com",
-        "password": "invalidpassword1"
-    }
+  "firstDiag": ["1", "2", "3"],
+  "secondDiag": ["4", "5", "6"]
 }
