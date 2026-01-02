@@ -9,7 +9,10 @@ credentials  = "testData\\multipleCreds.json"
 testData = readJsonData(credentials)
 
 
-@pytest.mark.parametrize("username,password", [("training1playwright@gmail.com","Welcome@02")])
+@pytest.mark.parametrize("username,password", [("trainingplaywright@gmail.com","Welcome@02")])
+# @pytest.mark.dependency(name="login")
+@pytest.mark.order(0)
+@pytest.mark.smoke()
 def test_logInUsingvalidcreds(page: Page, home_Page, login_page, username, password):
     home_Page.launchTheAmazonBrowser()
     home_Page.hoverOnAccountsBtn()
@@ -18,6 +21,15 @@ def test_logInUsingvalidcreds(page: Page, home_Page, login_page, username, passw
     login_page.clickOnContinueBtn()
     login_page.enterPassword(password)
     login_page.clickOnContinueBtn()
+
+# @pytest.mark.dependency(depends=["login"])
+@pytest.mark.order(1)
+@pytest.mark.smoke()
+def test_validateTheVisibilityofSwitchAccount(page:Page, home_Page, logInUsingvalidcreds):
+    home_Page.launchTheAmazonBrowser()
+    home_Page.hoverOnAccountsBtn()
+    home_Page.validateTheVisibilityOfSwitchAccount()
+    
 
 
 

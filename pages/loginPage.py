@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 import allure
+from allureWraper import BasePage
 
 class LoginPage():
     def __init__(self, page: Page):
