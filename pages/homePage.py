@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.commonMethods import CommonMethods
+from allureWraper import BasePage
 
 
 class HomePage():
@@ -10,6 +11,8 @@ class HomePage():
         ##
         self.searchTab = page.locator("input#twotabsearchtextbox")
         self.searchBtn = page.locator("input#nav-search-submit-button")
+        self.switchAccountBtn = page.locator("#nav-item-switch-account")
+        
 
     def hoverOnAccountsBtn(self):
         self.accntBtn.hover()
@@ -17,15 +20,15 @@ class HomePage():
     def clickOnSignInBtn(self):
         expect(self.signInBtn).to_be_visible()
         self.signInBtn.click()
-        # commonMethods = CommonMethods()
-        # commonMethods.clickOnAnelement(self.signInBtn)
 
     def launchTheAmazonBrowser(self):
         self.page.goto("https://www.amazon.in/")
         self.accntBtn.wait_for(timeout=40000)
+        self.page.wait_for_timeout(5000)
 
     def searchForTheProduct(self, value):
         self.searchTab.fill(value)
         self.searchBtn.click()
 
-        
+    def validateTheVisibilityOfSwitchAccount(self):
+        expect(self.switchAccountBtn).to_be_visible()
