@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from allureWraper import BasePage
 
-class ShoppingCart():
+class ShoppingCart(BasePage):
     def __init__(self, page: Page):
         self.page = page
         self.shoppingCartText = page.locator("//h2[contains(text(),'Shopping Cart')]")

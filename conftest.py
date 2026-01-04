@@ -60,18 +60,18 @@ def logInUsingvalidcreds(page, home_Page, login_page):
 import pytest
 import allure
 
-# @pytest.hookimpl(hookwrapper=True)
-# def pytest_runtest_makereport(item, call):
-#     outcome = yield
-#     report = outcome.get_result()
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
 
-#     if report.when == "call" and report.failed:
-#         page = item.funcargs.get("page", None)
-#         if page:
-#             screenshot = page.screenshot()
-#             allure.attach(
-#                 screenshot,
-#                 name="Failure Screenshot",
-#                 attachment_type=allure.attachment_type.PNG
-#             )
+    if report.when == "call" and report.failed:
+        page = item.funcargs.get("page", None)
+        if page:
+            screenshot = page.screenshot()
+            allure.attach(
+                screenshot,
+                name="Failure Screenshot",
+                attachment_type=allure.attachment_type.PNG
+            )
 

@@ -14,10 +14,11 @@ def test_validateProductCheckOut(page:Page, home_Page, results_page, shoppingCar
     shoppingCart_page.clickOnProceedToBuyBtn()
     expect(page).to_have_title("Place Your Order - Amazon Checkout")
 
+@pytest.mark.productCheckout1()
 def test_validateTheCheckOutUI(page:Page, home_Page, results_page, shoppingCart_page, CheckOut_page, logInUsingvalidcreds):
-    home_Page.launchTheAmazonBrowser()
+    # home_Page.launchTheAmazonBrowser()
     page.wait_for_timeout(3000)
-    page.screenshot(path="homepage.png")
+    page.screenshot(path="screenshots\\homepage.png")
     results_page.clickOnCartBtn()
     shoppingCart_page.clickOnProceedToBuyBtn()
     CheckOut_page.validateTheVisibilityOfdeliverToThisAddressBtn()

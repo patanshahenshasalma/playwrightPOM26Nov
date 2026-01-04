@@ -3,7 +3,7 @@ from utils.commonMethods import CommonMethods
 from allureWraper import BasePage
 
 
-class HomePage():
+class HomePage(BasePage):
     def __init__(self, page: Page):
         self.page = page
         self.accntBtn = page.locator("#nav-link-accountList")

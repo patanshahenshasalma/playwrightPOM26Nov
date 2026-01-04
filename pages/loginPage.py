@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 import allure
 from allureWraper import BasePage
 
-class LoginPage():
+class LoginPage(BasePage):
     def __init__(self, page: Page):
         self.page = page
         self.emailTextBox = page.locator("#ap_email_login")
