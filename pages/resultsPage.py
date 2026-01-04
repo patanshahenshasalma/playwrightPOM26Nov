@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from allureWraper import BasePage
 productDataPath = "testData/shoppingCartDetails.json"
-class ResultsPage():
+class ResultsPage(BasePage):
     def __init__(self, page: Page):
         self.page = page
         self.resultsText = page.locator("//div[@data-cy ='title-recipe']//h2")
@@ -9,12 +9,14 @@ class ResultsPage():
         self.decrementicon = page.locator("span[data-a-selector='decrement-icon']")
         self.cartIcon = page.locator("#nav-cart-text-container")
 
+    
+
+
     def getResultsText(self):
         return self.resultsText.text_content()
-    
+
     def clickOnAddToCartBtn(self, product):
         self.addToCartBtn(product).first.click()
-        
         
 
     def validateTheVisibilityOfDecementIconAfterAddingTheElementToCart(self):

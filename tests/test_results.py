@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 import pytest
 
-def verifySearchResults(page: Page, home_Page, results_page, logInUsingvalidcreds):
+def test_verifySearchResults(page: Page, home_Page, results_page, logInUsingvalidcreds):
     home_Page.launchTheAmazonBrowser()
     home_Page.searchForTheProduct("iphone")
     resultsText = []
@@ -19,11 +19,10 @@ def verifySearchResults(page: Page, home_Page, results_page, logInUsingvalidcred
 
     assert errors.count==0, "displayed results has results other than iphone and apple"
 
-
 def test_validate_addToCartFunctionality(page:Page, home_Page, results_page, logInUsingvalidcreds):
     home_Page.launchTheAmazonBrowser()
     home_Page.searchForTheProduct("iphone")
-    results_page.clickOnAddToCartBtn("iPhone 16")
+    results_page.clickOnAddToCartBtn("iPhone 15")
     results_page.validateTheVisibilityOfDecementIconAfterAddingTheElementToCart()
     results_page.clickOnDecrementicon()
 
