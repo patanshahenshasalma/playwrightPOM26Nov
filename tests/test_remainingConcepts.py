@@ -101,9 +101,10 @@ def test_file_download(page: Page):
         page.click("text=some-file.txt")
     download = download_info.value
     print(download)
-    file_path = "downloads/" + download.suggested_filename
+    file_path = "download/" + download.suggested_filename
     download.save_as(file_path)
     assert os.path.exists(file_path)
+
 
 def datePickers(page:Page):
     page.goto("https://jqueryui.com/datepicker/")
