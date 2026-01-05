@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 import pytest
 
 @pytest.mark.regression()
-def test_validateProductCheckOut(page:Page, home_Page, results_page, shoppingCart_page, logInUsingvalidcreds):
+def test_validateProductCheckOut(page:Page, home_Page, results_page, shoppingCart_page):
     home_Page.launchTheAmazonBrowser()
     home_Page.searchForTheProduct("iphone")
     results_page.clickOnAddToCartBtn("iPhone 16")
@@ -15,8 +15,8 @@ def test_validateProductCheckOut(page:Page, home_Page, results_page, shoppingCar
     expect(page).to_have_title("Place Your Order - Amazon Checkout")
 
 @pytest.mark.productCheckout1()
-def test_validateTheCheckOutUI(page:Page, home_Page, results_page, shoppingCart_page, CheckOut_page, logInUsingvalidcreds):
-    # home_Page.launchTheAmazonBrowser()
+def test_validateTheCheckOutUI(page:Page, home_Page, results_page, shoppingCart_page, CheckOut_page):
+    home_Page.launchTheAmazonBrowser()
     page.wait_for_timeout(3000)
     page.screenshot(path="screenshots\\homepage.png")
     results_page.clickOnCartBtn()

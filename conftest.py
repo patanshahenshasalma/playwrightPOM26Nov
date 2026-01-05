@@ -46,7 +46,7 @@ def CheckOut_page(page):
     CheckOut_page = CheckOutPage(page)
     return CheckOut_page
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def logInUsingvalidcreds(page, home_Page, login_page):
     home_Page.launchTheAmazonBrowser()
     home_Page.hoverOnAccountsBtn()
@@ -55,6 +55,7 @@ def logInUsingvalidcreds(page, home_Page, login_page):
     login_page.clickOnContinueBtn()
     login_page.enterPassword("Welcome@02")
     login_page.clickOnContinueBtn()
+    yield
 
 
 import pytest
