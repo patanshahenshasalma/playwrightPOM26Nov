@@ -18,7 +18,7 @@ def test_validateProductCheckOut(page:Page, home_Page, results_page, shoppingCar
 def test_validateTheCheckOutUI(page:Page, home_Page, results_page, shoppingCart_page, CheckOut_page):
     home_Page.launchTheAmazonBrowser()
     page.wait_for_timeout(3000)
-    page.screenshot(path="screenshots\\homepage.png")
+    page.screenshot(path="screenshots/homepage.png")
     results_page.clickOnCartBtn()
     shoppingCart_page.clickOnProceedToBuyBtn()
     CheckOut_page.validateTheVisibilityOfdeliverToThisAddressBtn()

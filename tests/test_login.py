@@ -5,7 +5,7 @@ from pages.loginPage import LoginPage
 from utils.readingJson import readJsonData
 import json
 import os
-credentials  = "testData\\multipleCreds.json"
+credentials  = "testData/multipleCreds.json"
 testData = readJsonData(credentials)
 
 

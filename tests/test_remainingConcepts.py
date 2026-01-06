@@ -91,7 +91,7 @@ def alerts(page:Page):
 def fileUpload(page:Page):
     page.goto("https://the-internet.herokuapp.com/upload")
     # page.hover("text=File Uploader")
-    page.set_input_files("#file-upload", "testData\\credentails.csv")
+    page.set_input_files("#file-upload", "testData/credentails.csv")
     # page.set_input_files("#file-upload", "testData\\credentails.csv")
     page.click("#file-submit")
 
