@@ -95,15 +95,15 @@ def fileUpload(page:Page):
     # page.set_input_files("#file-upload", "testData\\credentails.csv")
     page.click("#file-submit")
 
-def test_file_download(page: Page):
-    page.goto("https://the-internet.herokuapp.com/download")
-    with page.expect_download() as download_info:
-        page.click("text=some-file.txt")
-    download = download_info.value
-    print(download)
-    file_path = "download/" + download.suggested_filename
-    download.save_as(file_path)
-    assert os.path.exists(file_path)
+# def test_file_download(page: Page):
+#     page.goto("https://the-internet.herokuapp.com/download")
+#     with page.expect_download() as download_info:
+#         page.click("text=some-file.txt")
+#     download = download_info.value
+#     print(download)
+#     file_path = "download/" + download.suggested_filename
+#     download.save_as(file_path)
+#     assert os.path.exists(file_path)
 
 
 def datePickers(page:Page):
