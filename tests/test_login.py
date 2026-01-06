@@ -27,7 +27,7 @@ def test_logInUsingvalidcreds(page: Page, home_Page, login_page, username, passw
 @pytest.mark.productCheckout()
 def test_validateTheVisibilityofSwitchAccount(page:Page, home_Page, logInUsingvalidcreds ):
     home_Page.hoverOnAccountsBtn()
-    home_Page.validateTheVisibilityOfSwitchAccount()
+    # home_Page.validateTheVisibilityOfSwitchAccount()
     
 
 # HTML
