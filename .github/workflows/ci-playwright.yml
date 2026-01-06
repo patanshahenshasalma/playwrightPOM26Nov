@@ -41,7 +41,7 @@ jobs:
       # 5️⃣ Run Playwright tests with Allure results
       - name: Run Playwright Tests
         run: |
-          pytest tests/ --alluredir=allure-results --capture=tee-sys
+          pytest --alluredir=allure-results --capture=tee-sys
 
       # 6️⃣ Generate Allure HTML report
       - name: Generate Allure Report
