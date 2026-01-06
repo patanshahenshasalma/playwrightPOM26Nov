@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
+      # 1️⃣ Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -28,14 +28,24 @@ jobs:
           pip install allure-pytest
           playwright install --with-deps
 
-      # 4️⃣ Run Playwright tests (parallel, attach screenshots via hook)
+      # 4️⃣ Run Playwright tests (parallel, keep artifacts)
       - name: Run Playwright Tests
         run: |
-          pytest -n 6 --alluredir=allure-results --capture=tee-sys
+          pytest -n 6 \
+            --alluredir=allure-results \
+            --capture=tee-sys
         continue-on-error: true
 
-      # 5️⃣ Install Allure CLI
+      # 5️⃣ Verify Allure Results (DEBUG SAFETY)
+      - name: Verify Allure Results
+        if: always()
+        run: |
+          echo "Listing allure-results contents:"
+          ls -la allure-results || echo "No allure-results directory found"
+
+      # 6️⃣ Install Allure CLI
       - name: Install Allure CLI
+        if: always()
         run: |
           sudo apt-get update
           sudo apt-get install -y unzip wget
@@ -45,27 +55,17 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
           allure --version
 
-      # 6️⃣ Generate Allure HTML report
+      # 7️⃣ Generate Allure HTML report (NO DATA LOSS)
       - name: Generate Allure Report
+        if: always()
         run: |
           allure generate allure-results -o allure-report --clean
 
-      # 7️⃣ Fix relative links for GitHub Pages
-      - name: Fix base href for Pages
-        run: |
-          sed -i 's|<head>|<head><base href="./">|' allure-report/index.html
-
       # 8️⃣ Deploy to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
-
-      # 9️⃣ Optional: Upload Allure report as artifact (for debugging)
-      - name: Upload Allure Report Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Allure-Report
-          path: allure-report
