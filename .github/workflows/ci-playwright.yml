@@ -43,6 +43,13 @@ jobs:
         run: |
           pytest -n 6 --alluredir=allure-results --capture=tee-sys
 
+      # 6️⃣ Install Allure CLI
+      - name: Install Allure CLI
+        if: always()
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y allure
+
       # 6️⃣ Generate Allure HTML report (ALWAYS run)
       - name: Generate Allure Report
         if: always()
