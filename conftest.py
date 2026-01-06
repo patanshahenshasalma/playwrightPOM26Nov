@@ -16,7 +16,7 @@ import os
 @pytest.fixture(scope="function")
 def page():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, slow_mo=3000)
+        browser = p.chromium.launch(slow_mo=3000)
         page = browser.new_page()
         yield page
         browser.close()
@@ -50,10 +50,10 @@ def CheckOut_page(page):
 def logInUsingvalidcreds(page, home_Page, login_page):
     home_Page.launchTheAmazonBrowser()
     home_Page.hoverOnAccountsBtn()
-    home_Page.clickOnSignInBtn()
+    # home_Page.clickOnSignInBtn()
     login_page.enterEmailID("trainingplaywright@gmail.com")
     login_page.clickOnContinueBtn()
-    login_page.enterPassword("Welcome@02")
+    login_page.enterPassword("Welcome@04")
     login_page.clickOnContinueBtn()
     yield
 

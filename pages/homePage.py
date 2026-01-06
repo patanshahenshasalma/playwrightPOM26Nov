@@ -15,7 +15,7 @@ class HomePage(BasePage):
         
 
     def hoverOnAccountsBtn(self):
-        self.accntBtn.hover()
+        self.accntBtn.click()
 
     def clickOnSignInBtn(self):
         expect(self.signInBtn).to_be_visible()
