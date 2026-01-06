@@ -59,7 +59,7 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: |
-          allure generate allure-results -o allure-report --clean
+          allure generate allure-results -o allure-report
 
       # 8️⃣ Deploy to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
