@@ -44,14 +44,14 @@ jobs:
 
       # 6. Upload Allure Report as artifact
       - name: Upload Allure Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Allure-Report
           path: allure-report
 
       # 7. Upload screenshots folder (if saved in tests)
       - name: Upload Screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Screenshots
           path: tests/screenshots
