@@ -5,5 +5,5 @@ playwright==1.55.0
 pydantic==2.12.5
 openpyxl==3.2.4
 python-dotenv==1.2.1
-pytest-xdist ==3.8.0
-allure-pytest=2.15.2
+pytest-xdist==3.8.0
+allure-pytest==2.15.2
