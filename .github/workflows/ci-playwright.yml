@@ -59,8 +59,14 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: |
-          sleep 5
-          allure generate allure-results -o allure-report
+          allure generate allure-results -o allure-report --clean
+
+      # 8️⃣ Fix relative links for GitHub Pages
+      - name: Fix base href for Pages
+        if: always()
+        run: |
+          sed -i 's|<head>|<head><base href="./">|' allure-report/index.html
+
       # 8️⃣ Deploy to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         if: always()
