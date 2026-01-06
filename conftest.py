@@ -16,7 +16,7 @@ import os
 @pytest.fixture(scope="function")
 def page():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=3000)
+        browser = p.chromium.launch(headless=True, slow_mo=3000)
         page = browser.new_page()
         yield page
         browser.close()
