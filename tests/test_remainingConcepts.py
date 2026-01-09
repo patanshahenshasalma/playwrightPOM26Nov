@@ -1,14 +1,15 @@
 from playwright.sync_api import Page, expect
 import os
+from datetime import datetime
 
 # // Keybord comands
-def keyBoardEvents(page: Page):
-    page.goto("https://www.amazon.in/")
-    page.locator("input#twotabsearchtextbox").fill("iphone")
-    page.keyboard.press("ArrowDown")
-    page.keyboard.press("Tab")
-    page.keyboard.press("Enter")
-    page.wait_for_timeout(5000)
+# def keyBoardEvents(page: Page):
+#     page.goto("https://www.amazon.in/")
+#     page.locator("input#twotabsearchtextbox").fill("iphone")
+#     page.keyboard.press("ArrowDown")
+#     page.keyboard.press("Tab")
+#     page.keyboard.press("Enter")
+#     page.wait_for_timeout(5000)
     # page.keyboard.press("Escape")
     # Press and Release Keys Separately
     # page.keyboard.down("Control")
@@ -16,7 +17,7 @@ def keyBoardEvents(page: Page):
     # page.keyboard.up("Control")
 
     # # Keyboard Shortcuts (Combination Keys)
-    page.keyboard.press("Control+A")   # Select all
+    # page.keyboard.press("Control+A")   # Select all
     # page.keyboard.press("Control+C")   # Copy
     # page.keyboard.press("Control+V")   # Paste
 
@@ -24,14 +25,14 @@ def keyBoardEvents(page: Page):
 
 
 
-def mouseEvents(page:Page):
+# def mouseEvents(page:Page):
     # page.goto("https://www.amazon.in/")
     # page.hover("//span[contains(text(),'Account & Lists')]")
     # page.mouse.move(300, 200)
     # page.mouse.down()
     # page.mouse.up()
     # Drag and Drop (Using Mouse)
-    page.goto("https://practice.expandtesting.com/drag-and-drop?utm_source=chatgpt.com")
+    # page.goto("https://practice.expandtesting.com/drag-and-drop?utm_source=chatgpt.com")
     # source = page.locator(page.locator("#column-a"))
     # target = page.locator("#column-b")
     # source = "#column-a"
@@ -57,13 +58,19 @@ def mouseEvents(page:Page):
 
 # lambda dialog: dialog.click("text=hello")
 
-def alerts(page:Page):
+# def alerts(page:Page):
     
-    page.goto("https://the-internet.herokuapp.com/javascript_alerts")
-    def handleAlert(dialog):
-        dialog.dismiss("text=Hello")
-    page.once("dialog", handleAlert)
-    page.locator("//button[@onclick='jsPrompt()']").click()
+#     page.goto("https://the-internet.herokuapp.com/javascript_alerts")
+    # def handleAlert(dialog):
+       
+    #     dialog.dismiss()
+    #     return dialog.message
+
+    # def handlePrompt(dialog):
+    #     dialog.accept("Playwright Prompt")
+    #     print(dialog.message)
+    # page.on("dialog", handlePrompt)
+    # page.locator("//button[@onclick='jsPrompt()']").click()
 
     
 
@@ -88,12 +95,12 @@ def alerts(page:Page):
 #     # page.click("text=Click for JS Prompt")
 
 
-def fileUpload(page:Page):
-    page.goto("https://the-internet.herokuapp.com/upload")
-    # page.hover("text=File Uploader")
-    page.set_input_files("#file-upload", "testData/credentails.csv")
-    # page.set_input_files("#file-upload", "testData\\credentails.csv")
-    page.click("#file-submit")
+# def fileUpload(page:Page):
+#     page.goto("https://the-internet.herokuapp.com/upload")
+#     # page.hover("text=File Uploader")
+#     page.set_input_files("#file-upload", "testData/credentails.csv")
+#     # page.set_input_files("#file-upload", "testData\\credentails.csv")
+#     page.click("#file-submit")
 
 # def test_file_download(page: Page):
 #     page.goto("https://the-internet.herokuapp.com/download")
@@ -104,6 +111,20 @@ def fileUpload(page:Page):
 #     file_path = "download/" + download.suggested_filename
 #     download.save_as(file_path)
 #     assert os.path.exists(file_path)
+
+# MM/dd/yyyy
+
+# DD/MM/YYYY
+# page.locator("input#datepicker").fill("03/01/2026")
+
+def test_datePickers(page:Page):
+    page.goto("https://jqueryui.com/datepicker/")
+    # page.frame_locator(".demo-frame").locator("input#datepicker").fill("03/01/2026")
+    frame = page.frame_locator(".demo-frame")
+    frame.locator("input#datepicker").click()
+    frame.locator("a[data-date='14']").click()
+    page.wait_for_timeout(2000)
+
 
 
 def datePickers(page:Page):
@@ -118,30 +139,52 @@ def datePickers(page:Page):
         frame.locator("//a[@data-date='11']").click()
 
 
-# def test_navigate_to_january(page: Page):
-#     page.goto("https://jqueryui.com/datepicker/")
+def navigate_to_january(page: Page):
+    page.goto("https://jqueryui.com/datepicker/")
 
-#     frame = page.frame_locator(".demo-frame")
-#     frame.locator("#datepicker").click()
+    frame = page.frame_locator(".demo-frame")
+    frame.locator("#datepicker").click()
 
-#     target_month = "April"
-#     months = [
-#         "January", "February", "March", "April", "May", "June",
-#         "July", "August", "September", "October", "November", "December"
-#     ]
+    target_month = "April"
+    months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
 
-#     while True:
-#         current_month = frame.locator(".ui-datepicker-month").text_content()
+    # year =[]
 
-#         if current_month == target_month:
-#             frame.locator("//a[text()='11']").click()
-#             break
+    # current_date = datetime.now()
+    # current_year = current_date.year
+    # current_month = months[current_date.month - 1]
 
-#         # Compare index to decide direction
-#         if months.index(current_month) > months.index(target_month):
-#             frame.locator(".ui-datepicker-prev").click()
-#         else:
-#             frame.locator(".ui-datepicker-next").click()
+    target_year = 2027
+    while True:
+        current_year = frame.locator(".ui-datepicker-year").text_content()
+
+        if current_year == target_year:
+            break
+
+        # Compare index to decide direction
+        if current_year > months.index(target_month):
+            frame.locator(".ui-datepicker-prev").click()
+        else:
+            frame.locator(".ui-datepicker-next").click()
+
+    
+    while True:
+        current_month = frame.locator(".ui-datepicker-month").text_content()
+
+        if current_month == target_month:
+            frame.locator("//a[text()='11']").click()
+            break
+
+        # Compare index to decide direction
+        if months.index(current_month) > months.index(target_month):
+            frame.locator(".ui-datepicker-prev").click()
+        else:
+            frame.locator(".ui-datepicker-next").click()
+
+    
 
 
 
